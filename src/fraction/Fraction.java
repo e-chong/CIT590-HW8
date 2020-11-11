@@ -1,15 +1,15 @@
 package fraction;
 
+/**
+ * Represents a fraction with associated methods
+ * @author Tianxiao Zhang, Eugene Chong
+ *
+ */
 public class Fraction {
 	
 	// initialize the instance variables
 	int numerator = 0;
 	int denominator = 0;
-
-//	public static void main(String[] args) {
-//		// TODO Auto-generated method stub
-//
-//	}
 	
 	/**
 	 * create a Fraction with the given numerator and denominator
@@ -27,7 +27,7 @@ public class Fraction {
 			this.numerator = -this.numerator;
 		//if only denominator is negative, 
 		//switch denominator to positive and numerator to negative
-		}else if(this.denominator < 0){
+		}else if (this.denominator < 0){
 			this.denominator = -this.denominator;
 			this.numerator = -this.numerator;
 		}
@@ -37,6 +37,11 @@ public class Fraction {
 	 * reduce the current fraction by eliminating common factors
 	 */
 	public void reduceToLowestForm() {
+		
+		// if the numerator is 0, change the denominator to 1
+		if (this.numerator == 0) {	
+			this.denominator = 1;
+		} else {
 		//find the greatest common factor
 		int gcd = 1;
 		for(int i = 1; i <= Math.abs(this.denominator) && i <= Math.abs(this.numerator); i++) {
@@ -47,6 +52,7 @@ public class Fraction {
 		//reduce both numbers by the scale of gcd
 		this.denominator = this.denominator/gcd;
 		this.numerator = this.numerator/gcd;		
+		}
 	}
 	
 	/**
@@ -66,18 +72,18 @@ public class Fraction {
 	}
 	
 	/**
-	 * substract the current fraction to the given otherFraction
+	 * subtract the current fraction to the given otherFraction
 	 * @param otherFraction
 	 */
-	public Fraction substract(Fraction otherFraction) {
+	public Fraction subtract(Fraction otherFraction) {
 		//find the new denominator
 		int dtemp = this.denominator*otherFraction.denominator;
 		//find the new numerator
 		int ntemp = this.numerator*otherFraction.denominator - this.denominator*otherFraction.numerator;
 		
-		Fraction substracted = new Fraction(ntemp, dtemp);
-		substracted.reduceToLowestForm();
-		return substracted;
+		Fraction subtracted = new Fraction(ntemp, dtemp);
+		subtracted.reduceToLowestForm();
+		return subtracted;
 	}
 	
 	/**
@@ -192,7 +198,7 @@ public class Fraction {
 	}
 	
 	/**
-	 * overriden method to compare the 
+	 * overridden method to compare the 
 	 * given object (as a fraction) to the current fraction, for equality
 	 * @param object
 	 */
@@ -217,7 +223,7 @@ public class Fraction {
 	}
 	
 	/**
-	 * overriden method to return a string representation of the current fraction
+	 * overridden method to return a string representation of the current fraction
 	 */
 	public String toString() {
 		//first convert the numerator and the denominator to strings
